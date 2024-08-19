@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% for msg in 
+        get_flashed_messages()%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Hurray!!!!</strong> Hey {{name}}-{{msg}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    {% endfor %}
+
+     {% if name %}
+     <h1>Hello {{name|upper}}!!!</h1>
+     <br><br><br>
+     <table class="table table-hover table-striped table-bordered">
+        {% for our_user in our_users%}
+        <tr>
+            <!-- <td>{{our_user.id}}</td>.<td>{{our_user.name}}</td>--<td>{{our_user.email}}</td> -->
+            <td>{{our_user.id}}.{{our_user.name}}--{{our_user.email}}</td>
+        </tr>
+           <br>
+      {% endfor %}
+     </table>
+     {% else %}
+     <h1>User List</h1>
+     <br>
+     <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+     <form method="post">
+        
+        {{form.hidden_tag()}}
+        {{form.name.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.name(   class='form-control' )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+        {{form.hidden_tag()}}
+        {{form.email.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.email(class='form-control' )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+
+        {{form.submit( class="btn btn-primary")}}
+     </form>
+     </div>
+     <br><br><br>
+     <table class="table table-hover table-striped table-bordered">
+        {% for our_user in our_users%}
+        <tr>
+            <!-- <td>{{our_user.id}}</td>.<td>{{our_user.name}}</td>--<td>{{our_user.email}}</td> -->
+            <td>{{our_user.id}}.{{our_user.name}}--{{our_user.email}}</td>
+        </tr>
+           <br>
+      {% endfor %}
+     </table>
+     
+     
+     {% endif %}
+    
+    {% endblock %}
+</body>
+</html>

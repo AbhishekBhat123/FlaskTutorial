@@ -38,4 +38,12 @@
      </form>
      these are the forms without bootsrap
 
-#importing flsah in flask for cre
+#importing flsah in flask for creating
+#creating sql db for using pip install flask-sqlalchemy
+
+After creating db to check we have to go  to terminAL and say python then do commamnds
+> from app import app, db
+>>> with app.app_context():
+...     db.create_all()
+
+we have to create db with mysql so we have to install 3 connectors  pip install mysql-connector, pip install mysql-connector-python,  pip install mysql-connector-python-rf.
