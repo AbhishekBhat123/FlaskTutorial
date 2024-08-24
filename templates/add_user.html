@@ -18,12 +18,11 @@
 
      {% if name %}
      <h1>Hello {{name|upper}}!!!</h1>
-     <br><br><br>
      <table class="table table-hover table-striped table-bordered">
         {% for our_user in our_users%}
         <tr>
             <!-- <td>{{our_user.id}}</td>.<td>{{our_user.name}}</td>--<td>{{our_user.email}}</td> -->
-            <td>{{our_user.id}}.{{our_user.name}}--{{our_user.email}}</td>
+            <td>{{our_user.id}}.<a href="{{url_for('update',id = our_user.id)}}"> {{our_user.name}}</a>--{{our_user.email}}--{{our_user.favourite_color}}--<a href="{{url_for('delete',id = our_user.id)}}"> Delete </a> </td>
         </tr>
            <br>
       {% endfor %}
@@ -41,6 +40,10 @@
         <!-- usde for displaying name field -->
 
         <br>
+        {{form.username.label (class='form-label') }}
+        {{form.username(   class='form-control' )}}
+        <br>
+
         {{form.hidden_tag()}}
         {{form.email.label (class='form-label') }}
     <!-- contains label of like placeholder  -->
@@ -48,16 +51,38 @@
         <!-- usde for displaying name field -->
 
         <br>
+        {{form.hidden_tag()}}
+        {{form.favourite_color.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.favourite_color(class='form-control' )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+
+        {{form.password_hash.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.password_hash(class='form-control' )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+
+        {{form.password_hash2.label (class='form-label') }}
+        <!-- contains label of like placeholder  -->
+            {{form.password_hash2(class='form-control' )}}
+            <!-- usde for displaying name field -->
+    
+            <br>
 
         {{form.submit( class="btn btn-primary")}}
      </form>
      </div>
-     <br><br><br>
      <table class="table table-hover table-striped table-bordered">
         {% for our_user in our_users%}
         <tr>
             <!-- <td>{{our_user.id}}</td>.<td>{{our_user.name}}</td>--<td>{{our_user.email}}</td> -->
-            <td>{{our_user.id}}.{{our_user.name}}--{{our_user.email}}</td>
+            <td>{{our_user.id}}.<a href="{{url_for('update',id =our_user.id )}}"> {{our_user.name}}</a>--{{our_user.username}}--{{our_user.email}}--{{our_user.favourite_color}}--pw:{{our_user.password_hash}}--<a href="{{url_for('delete',id = our_user.id)}}"> Delete </a> </td>
+            </td>
+            <!-- here 'update'is the name function in a app.py// -->
         </tr>
            <br>
       {% endfor %}

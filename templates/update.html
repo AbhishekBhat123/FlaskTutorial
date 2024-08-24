@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% for msg in 
+        get_flashed_messages()%}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Hurray!!!!</strong> Hey {{name}}-{{msg}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    {% endfor %}
+
+    {% if id == current_user.id%}
+
+     <h1>Update User </h1>
+     <br>
+     <!-- ID To Update : {{id}}
+     Our current id : {{current_user.id}} -->
+     <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+     <form action="/update/{{name_to_update.id}}" method="post">
+        
+        {{form.hidden_tag()}}
+        {{form.name.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.name(   class='form-control',value = name_to_update.name )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+
+        {{form.hidden_tag()}}
+        {{form.username.label (class='form-label') }}
+        {{form.username(   class='form-control',value = name_to_update.username )}}
+        <br>
+        {{form.hidden_tag()}}
+        {{form.email.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.email(class='form-control',value = name_to_update.email )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+        {{form.hidden_tag()}}
+        {{form.favourite_color.label (class='form-label') }}
+    <!-- contains label of like placeholder  -->
+        {{form.favourite_color(class='form-control',value = name_to_update.favourite_color )}}
+        <!-- usde for displaying name field -->
+
+        <br>
+
+        {{form.submit( class="btn btn-danger",value="Update")}}
+        <a href="{{url_for('delete',id = id)}}" class="btn btn-danger"> Delete </a>
+     </form>
+     </div>
+     {% else %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Sorrry!!!!</strong> {{name}}-You Can't have any accessssssssssss to this user
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <h1>Access Denied!</h1>
+     {% endif %}
+    {% endblock %}
+</body>
+</html>
